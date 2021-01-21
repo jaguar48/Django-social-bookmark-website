@@ -1,0 +1,19 @@
+{% extends "blog/base.html" %}
+{% block title %}contact us{% endblock %}
+{% block content %}
+{% if sent %}
+    <h1>We will be with you shortly</h1>
+    {% else %}
+        <h1>Contact us</h1>
+        <form method="post">
+            <input type = "hidden" id ="previous_page" value = "/previous/page/url">
+            {{ contact.as_p }}
+            {% csrf_token %}
+            <button class= "btn btn-primary" type= "submit" id="submit">Submit</button>
+        </form>
+        <script>
+            prev = document.getElementById("previous_page");
+            prev.value = document.referrer
+        </script>
+{% endif %}
+{% endblock %}

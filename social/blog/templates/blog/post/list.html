@@ -1,0 +1,29 @@
+{% extends "blog/base.html" %}
+{% load thumbnail %}
+{% load blog_tags %}
+{% block title %}My Blog{% endblock %}
+{% block content %}
+<h1>My Blog</h1>
+
+
+{% if tag %}
+    <h2>Posts tagged with "{{ tag.name }}"</h2>
+{% endif %}
+
+{% for post in posts %}
+    <h2>
+    <a href="{{ post.get_absolute_url }}">
+            {{ post.title }}
+    </a>
+    </h2>
+    <p class="date">
+        Published {{ post.publish }} by {{ post.author }}
+    </p>
+    {% thumbnail post.image "100x80" crop="80%" as im %}
+<a href="{{ post.get_absolute_url }}">
+<img src="{{ im.url }}" class="item-img">
+</a>
+<div>{{ post.body|markdown|truncatewords_html:30 }}</div>
+{% endfor %}
+{% include "pagination.html" with page=posts %}
+{% endblock %}
