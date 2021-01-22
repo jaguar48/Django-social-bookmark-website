@@ -1,6 +1,17 @@
 from django.contrib import admin
-from .models import Post,Comment, Category
+from .models import Post,Comment, Category, Subscriber,Newsletter
 
+admin.site.register(Subscriber)
+admin.site.register(Newsletter)
+def send_newsletter(modeladmin, request, queryset):
+    for newsletter in queryset:
+        newsletter.send(request)
+
+send_newsletter.short_description = "Send selected Newsletters to all subscribers"
+
+
+class NewsletterAdmin(admin.ModelAdmin):
+    actions = [send_newsletter]
 
 @admin.register(Post)
 class PostAdmin(admin.ModelAdmin):

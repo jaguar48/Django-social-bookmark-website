@@ -15,5 +15,7 @@ urlpatterns = [
     path('feed/', LatestPostsFeed(), name='post_feed'),
     url(r'^category$', views.show_category, name='category'),
     path('post_random/',views.post_random, name='posts'),
-
+    path('newsletter/', views.news, name= 'new'),
+    path('confirm/', views.confirm, name='confirm'),
+    path('delete/', views.delete, name='delete'),
 ]

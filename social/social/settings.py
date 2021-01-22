@@ -165,7 +165,7 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
 
-MEDIA_URL = '/media/'
+MEDIA_URL = '/media/', '/uploaded_newsletters/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 
 FROM_EMAIL = 'okonkwostanley67@yahoo.com'
